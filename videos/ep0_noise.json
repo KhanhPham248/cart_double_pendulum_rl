@@ -50,5 +50,12 @@
       -0.04,
       0.1
     ]
-  }
+  },
+  "gif": "init_ep0_noise.gif",
+  "gif_sha256": "3839bdf118067ea7af7574b4666554bffbdddc29ac587921276f04e3e048a21d",
+  "gif_width": 800,
+  "gif_height": 600,
+  "gif_fps": 20,
+  "gif_loop": "infinite",
+  "gif_colors": 256
 }

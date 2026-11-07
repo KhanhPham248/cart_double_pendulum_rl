@@ -50,5 +50,12 @@
       -0.04,
       0.1
     ]
-  }
+  },
+  "gif": "update_ep2_nominal.gif",
+  "gif_sha256": "d446d30634337d6b8ec9f05253de6d343c2d04ad28df97a239ec93d2279124b4",
+  "gif_width": 800,
+  "gif_height": 600,
+  "gif_fps": 20,
+  "gif_loop": "infinite",
+  "gif_colors": 256
 }

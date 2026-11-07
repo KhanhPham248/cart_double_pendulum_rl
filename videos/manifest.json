@@ -53,7 +53,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "init_ep0_nominal.gif",
+      "gif_sha256": "de0d2948f2d79cff1f0151d40b2a0f703df6e92651b0c5df860db76f440cb3dd",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 0,
@@ -107,7 +114,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "init_ep0_noise.gif",
+      "gif_sha256": "3839bdf118067ea7af7574b4666554bffbdddc29ac587921276f04e3e048a21d",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 0,
@@ -174,7 +188,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "init_ep0_push.gif",
+      "gif_sha256": "be2775b0fcdf6e19bf0e94d27d7a5cb2cc3ea420ecfca2fa7b9545ee1e400a6a",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 1,
@@ -228,7 +249,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep1_nominal.gif",
+      "gif_sha256": "72cf9c9fccffaf0311a605c895968da5fa87ab08ab0fc19938f29d402b3fbeba",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 1,
@@ -282,7 +310,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep1_noise.gif",
+      "gif_sha256": "cb3b352ddfef902b5dc2fa29625cefb2cb5c758f265c167f3897d5f9e794890b",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 1,
@@ -349,7 +384,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep1_push.gif",
+      "gif_sha256": "2d2be9334cf7428cea8a122af82b93b7eeedf083b84ab9fc7d69c78dcf68c7d3",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 2,
@@ -403,7 +445,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep2_nominal.gif",
+      "gif_sha256": "d446d30634337d6b8ec9f05253de6d343c2d04ad28df97a239ec93d2279124b4",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 2,
@@ -457,7 +506,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep2_noise.gif",
+      "gif_sha256": "bba721cdb16b3025b529d62bf2e22b196f4ff6f89e50d16964a5a8d226217b23",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 2,
@@ -524,7 +580,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep2_push.gif",
+      "gif_sha256": "1b2a460be3e33b8a4028208ca031719928f9db1648cdb48489110215640d0ebe",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 3,
@@ -578,7 +641,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep3_nominal.gif",
+      "gif_sha256": "733720b199ed19526812dc142f6fc2c15851a8828a152c132034732d929a3d66",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 3,
@@ -632,7 +702,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep3_noise.gif",
+      "gif_sha256": "1e506317406345c35274b291e1af52b9452d0059569707a6400d6cef1001f1a3",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     },
     {
       "target_ep": 3,
@@ -699,7 +776,14 @@
           -0.04,
           0.1
         ]
-      }
+      },
+      "gif": "update_ep3_push.gif",
+      "gif_sha256": "b181d6912ac46f17babf28f6045e47137d639f185b5bd980c890f4fd51da2a78",
+      "gif_width": 800,
+      "gif_height": 600,
+      "gif_fps": 20,
+      "gif_loop": "infinite",
+      "gif_colors": 256
     }
   ],
   "note": "Single fixed-seed demonstrations, not an evaluation benchmark."

@@ -63,5 +63,12 @@
       -0.04,
       0.1
     ]
-  }
+  },
+  "gif": "update_ep1_push.gif",
+  "gif_sha256": "2d2be9334cf7428cea8a122af82b93b7eeedf083b84ab9fc7d69c78dcf68c7d3",
+  "gif_width": 800,
+  "gif_height": 600,
+  "gif_fps": 20,
+  "gif_loop": "infinite",
+  "gif_colors": 256
 }

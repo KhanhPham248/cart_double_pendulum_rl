@@ -50,5 +50,12 @@
       -0.04,
       0.1
     ]
-  }
+  },
+  "gif": "init_ep0_nominal.gif",
+  "gif_sha256": "de0d2948f2d79cff1f0151d40b2a0f703df6e92651b0c5df860db76f440cb3dd",
+  "gif_width": 800,
+  "gif_height": 600,
+  "gif_fps": 20,
+  "gif_loop": "infinite",
+  "gif_colors": 256
 }

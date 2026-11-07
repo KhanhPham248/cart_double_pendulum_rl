@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+"""Create full-resolution, looping GitHub-ready GIFs from the EP MP4 gallery."""
+from __future__ import annotations
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[1]
+VIDEO_DIR = ROOT / 'videos'
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main() -> None:
+    if shutil.which('ffmpeg') is None:
+        raise SystemExit('ffmpeg is required')
+    sources = sorted(VIDEO_DIR.glob('ep[0-3]_[a-z]*.mp4'))
+    if len(sources) != 12:
+        raise SystemExit(f'expected 12 EP videos; found {len(sources)}')
+    for source in sources:
+        record = json.loads(source.with_suffix('.json').read_text())
+        prefix = 'init' if record['target_ep'] == 0 else 'update'
+        output = VIDEO_DIR / f"{prefix}_ep{record['target_ep']}_{record['scenario']}.gif"
+        palette_filter = ('[0:v]fps=20,split[a][b];'
+            '[a]palettegen=max_colors=256:stats_mode=full[p];'
+            '[b][p]paletteuse=dither=sierra2_4a')
+        subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', str(source),
+            '-filter_complex', palette_filter, '-loop', '0', str(output)], check=True)
+        record.update(gif=output.name, gif_sha256=sha256(output), gif_width=800,
+                      gif_height=600, gif_fps=20, gif_loop='infinite', gif_colors=256)
+        source.with_suffix('.json').write_text(json.dumps(record, indent=2)+'\n')
+        print(f'{output.name}: {output.stat().st_size/1024:.0f} KiB sha256={sha256(output)}', flush=True)
+    manifest_path = VIDEO_DIR / 'manifest.json'
+    manifest = json.loads(manifest_path.read_text())
+    for clip in manifest['clips']:
+        record = json.loads((VIDEO_DIR / clip['file'].replace('.mp4','.json')).read_text())
+        for key in ('gif','gif_sha256','gif_width','gif_height','gif_fps','gif_loop','gif_colors'):
+            clip[key] = record[key]
+    manifest_path.write_text(json.dumps(manifest, indent=2)+'\n')
+
+
+if __name__ == '__main__':
+    main()

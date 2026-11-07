@@ -1,17 +1,17 @@
 # EP0–EP3 video gallery
 
-Four fixed-target policies, each shown in three scenarios. Click a thumbnail to
-open its MP4 file; use **Raw / Download** if your GitHub client does not play it inline.
-All clips are 20 seconds at 25 fps, 800×600, H.264. The `init_` thumbnails identify EP0,
-which uses the earlier policy; `update_` identifies EP1–EP3 centered updates. Thumbnail
-times vary by scenario and are selected to show a representative, uncropped view.
+Four fixed-target policies, each shown in nominal, noisy and pushed conditions. The
+animated GIFs below play inline and loop; click any animation to open its full-color MP4.
+Each GIF preserves 800×600 resolution at 20 fps with a 256-color palette and high-quality
+dithering. The `init_` files identify EP0, which uses the earlier policy; `update_` identifies
+EP1–EP3 centered updates. The paired MP4 files retain 25 fps source quality.
 
 | Target | Nominal | Noise | Push |
 |---|---|---|---|
-| EP0 | [![EP0 nominal](init_ep0_nominal.jpg)](ep0_nominal.mp4) | [![EP0 noise](init_ep0_noise.jpg)](ep0_noise.mp4) | [![EP0 push](init_ep0_push.jpg)](ep0_push.mp4) |
-| EP1 | [![EP1 nominal](update_ep1_nominal.jpg)](ep1_nominal.mp4) | [![EP1 noise](update_ep1_noise.jpg)](ep1_noise.mp4) | [![EP1 push](update_ep1_push.jpg)](ep1_push.mp4) |
-| EP2 | [![EP2 nominal](update_ep2_nominal.jpg)](ep2_nominal.mp4) | [![EP2 noise](update_ep2_noise.jpg)](ep2_noise.mp4) | [![EP2 push](update_ep2_push.jpg)](ep2_push.mp4) |
-| EP3 | [![EP3 nominal](update_ep3_nominal.jpg)](ep3_nominal.mp4) | [![EP3 noise](update_ep3_noise.jpg)](ep3_noise.mp4) | [![EP3 push](update_ep3_push.jpg)](ep3_push.mp4) |
+| EP0 | [![EP0 nominal](init_ep0_nominal.gif)](ep0_nominal.mp4) | [![EP0 noise](init_ep0_noise.gif)](ep0_noise.mp4) | [![EP0 push](init_ep0_push.gif)](ep0_push.mp4) |
+| EP1 | [![EP1 nominal](update_ep1_nominal.gif)](ep1_nominal.mp4) | [![EP1 noise](update_ep1_noise.gif)](ep1_noise.mp4) | [![EP1 push](update_ep1_push.gif)](ep1_push.mp4) |
+| EP2 | [![EP2 nominal](update_ep2_nominal.gif)](ep2_nominal.mp4) | [![EP2 noise](update_ep2_noise.gif)](ep2_noise.mp4) | [![EP2 push](update_ep2_push.gif)](ep2_push.mp4) |
+| EP3 | [![EP3 nominal](update_ep3_nominal.gif)](ep3_nominal.mp4) | [![EP3 noise](update_ep3_noise.gif)](ep3_noise.mp4) | [![EP3 push](update_ep3_push.gif)](ep3_push.mp4) |
 
 ## Protocol
 
@@ -53,5 +53,5 @@ MUJOCO_GL=egl python scripts/render_ep_videos.py
 ```
 
 The [manifest](manifest.json) records model/policy hashes, initial states, parameters,
-push events and per-clip summaries. Matching JSON sidecars and sampled traces
-are provided beside each MP4. Output filenames are overwritten on rerender.
+push events, GIF settings and per-clip summaries. Matching JSON sidecars and sampled
+traces are provided beside each MP4. Output filenames are overwritten on rerender.
