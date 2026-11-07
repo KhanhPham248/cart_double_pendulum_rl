@@ -1,0 +1,9 @@
+{
+  "episode_length_s": 20,
+  "reset_system": {
+    "function": "reset_expert_balance",
+    "params": {
+      "curriculum_fraction": 0.3333
+    }
+  }
+}

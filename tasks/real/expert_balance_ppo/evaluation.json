@@ -1,0 +1,80 @@
+{
+  "protocol": "task_local_expert_validation",
+  "conditions": [
+    {
+      "key": "balance_nominal",
+      "task": "balancing",
+      "initial_state": "upright_exact",
+      "duration_s": 20,
+      "hold_s": 10,
+      "random_axes": [],
+      "push_force_n": {"force": 0.0},
+      "push_start_s": 2,
+      "push_duration_s": 0.1,
+      "seed": 611001,
+      "sensor_noise_scale": 1,
+      "stability_task": null,
+      "fall_check_after_stable_entry": false
+    },
+    {
+      "key": "balance_randomized_no_push",
+      "task": "balancing",
+      "initial_state": "upright_exact",
+      "duration_s": 20,
+      "hold_s": 10,
+      "random_axes": [
+        "mass",
+        "damping",
+        "force",
+        "noise"
+      ],
+      "push_force_n": {"force": 0.0},
+      "push_start_s": 2,
+      "push_duration_s": 0.1,
+      "seed": 621001,
+      "sensor_noise_scale": 1,
+      "stability_task": null,
+      "fall_check_after_stable_entry": false
+    },
+    {
+      "key": "push_neg",
+      "task": "balancing",
+      "initial_state": "upright_exact",
+      "duration_s": 20,
+      "hold_s": 10,
+      "random_axes": [
+        "mass",
+        "damping",
+        "force",
+        "noise"
+      ],
+      "push_force_n": {"force": 0.0},
+      "push_start_s": 2,
+      "push_duration_s": 0.1,
+      "seed": 631001,
+      "sensor_noise_scale": 1,
+      "stability_task": null,
+      "fall_check_after_stable_entry": false
+    },
+    {
+      "key": "push_pos",
+      "task": "balancing",
+      "initial_state": "upright_exact",
+      "duration_s": 20,
+      "hold_s": 10,
+      "random_axes": [
+        "mass",
+        "damping",
+        "force",
+        "noise"
+      ],
+      "push_force_n": {"force": 0.0},
+      "push_start_s": 2,
+      "push_duration_s": 0.1,
+      "seed": 641001,
+      "sensor_noise_scale": 1,
+      "stability_task": null,
+      "fall_check_after_stable_entry": false
+    }
+  ]
+}

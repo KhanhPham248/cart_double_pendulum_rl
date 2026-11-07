@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cart-double-pendulum-rl"
+version = "0.1.0"
+description = "Reinforcement-learning swing-up and balancing for a cart double pendulum, trained on an MJCF model of the real plant."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Hanoi University of Science and Technology (HUST)" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+  "mujoco==3.5.0",
+  "mjlab==1.2.0",
+  "rsl-rl-lib==5.0.1",
+  "torch>=2.7",
+  "numpy>=1.26",
+  "pyyaml>=6.0",
+  "onnx>=1.17",
+  "onnxruntime>=1.20",
+  "tensorboard>=2.16",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pyflakes>=3"]
+video = ["pillow>=10"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

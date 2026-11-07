@@ -1,0 +1,10 @@
+{
+  "episode_length_s": 20,
+  "reset_system": {
+    "function": "reset_full_task",
+    "params": {
+      "curriculum_file": "curriculum.json"
+    }
+  },
+  "actor_history_frames": 8
+}

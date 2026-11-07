@@ -1,0 +1,10 @@
+{
+  "name": "full_ppo",
+  "algorithm": "ppo",
+  "phase": "full",
+  "description": "PPO full task: one policy for swing-up, capture, balancing and cart centring, with a curriculum over its training budget.",
+  "environment_file": "environment.json",
+  "evaluation_file": "evaluation.json",
+  "curriculum_file": "curriculum.json",
+  "optimization_file": "optimization.json"
+}

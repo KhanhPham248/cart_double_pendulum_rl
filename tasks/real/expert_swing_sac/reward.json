@@ -1,0 +1,164 @@
+{
+  "scale_rewards_by_dt": false,
+  "terms": {
+    "swing_energy": {
+      "function": "swing_energy_target",
+      "weight": 1.0,
+      "params": {
+        "overshoot_width": 0.75
+      }
+    },
+    "swing_excess_energy": {
+      "function": "swing_excess_energy_cost",
+      "weight": -2.0,
+      "params": {
+        "excess_scale": 0.25
+      }
+    },
+    "swing_height": {
+      "function": "double_com_height",
+      "weight": 1.5,
+      "params": {}
+    },
+    "swing_upright": {
+      "function": "double_upright_capture",
+      "weight": 1.5,
+      "params": {
+        "angle_sigma_rad": {
+          "angle": 3.319
+        }
+      }
+    },
+    "swing_link2": {
+      "function": "gated_link2_upright_capture",
+      "weight": 8.0,
+      "params": {
+        "link2_angle_sigma_rad": {
+          "angle": 2.608
+        },
+        "link1_gate_sigma_rad": {
+          "angle": 4.267
+        }
+      }
+    },
+    "swing_capture": {
+      "function": "swing_capture_quality",
+      "weight": 18.0,
+      "params": {
+        "angle_sigma_rad": {
+          "angle": 1.185
+        },
+        "cart_sigma_m": {
+          "rail": 0.22
+        },
+        "cart_velocity_reference_m_s": {
+          "cart_speed": 1.0
+        },
+        "angular_velocity_reference_rad_s": {
+          "rate": 1.0
+        },
+        "center_floor": 0.25
+      }
+    },
+    "swing_handoff_ready": {
+      "function": "swing_handoff_ready",
+      "weight": 14.0,
+      "params": {
+        "cart_safe_m": {
+          "rail": 0.65
+        },
+        "angle_threshold_rad": {
+          "angle": 1.138
+        },
+        "cart_velocity_threshold_m_s": {
+          "cart_speed": 0.418
+        },
+        "angular_velocity_threshold_rad_s": {
+          "rate": 0.5285
+        }
+      }
+    },
+    "rail_safety": {
+      "function": "rail_safety_barrier",
+      "weight": -8.0,
+      "params": {
+        "free_cart_m": {
+          "rail": 0.72
+        },
+        "rail_limit_m": {
+          "rail": 0.95
+        }
+      }
+    },
+    "rail_terminal": {
+      "function": "rail_terminal_cost",
+      "weight": -25.0,
+      "params": {
+        "rail_limit_m": {
+          "rail": 0.95
+        }
+      }
+    },
+    "swing_time_to_handoff": {
+      "function": "swing_time_to_handoff_cost",
+      "weight": -0.05,
+      "params": {
+        "cart_safe_m": {
+          "rail": 0.65
+        },
+        "angle_threshold_rad": {
+          "angle": 1.138
+        },
+        "cart_velocity_threshold_m_s": {
+          "cart_speed": 0.418
+        },
+        "angular_velocity_threshold_rad_s": {
+          "rate": 0.5285
+        }
+      }
+    },
+    "force": {
+      "function": "force_l2",
+      "weight": -0.00025,
+      "params": {}
+    },
+    "force_rate": {
+      "function": "action_rate_l2",
+      "weight": -0.0005,
+      "params": {}
+    },
+    "swing_quiet_hold": {
+      "function": "swing_up_handoff_bonus",
+      "weight": 8.0,
+      "params": {
+        "cart_threshold_m": {
+          "rail": 0.16
+        },
+        "angle_threshold_rad": {
+          "angle": 0.6638
+        },
+        "velocity_threshold": {
+          "rate": 0.2114
+        }
+      }
+    },
+    "handoff_deficit": {
+      "function": "handoff_deficit",
+      "weight": -1.25,
+      "params": {
+        "cart_safe_m": {
+          "rail": 0.65
+        },
+        "angle_threshold_rad": {
+          "angle": 1.138
+        },
+        "cart_velocity_threshold_m_s": {
+          "cart_speed": 0.418
+        },
+        "angular_velocity_threshold_rad_s": {
+          "rate": 0.5285
+        }
+      }
+    }
+  }
+}

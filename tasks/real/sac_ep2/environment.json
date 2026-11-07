@@ -1,0 +1,15 @@
+{
+  "episode_length_s": 10.0,
+  "reset_system": {
+    "function": "reset_ep_curriculum",
+    "params": {
+      "target_ep": 2,
+      "curriculum_fraction": 0.4,
+      "near_probability": [
+        0.6,
+        0.1
+      ],
+      "transition_probability": 0.25
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "tip_swing_sac",
+  "algorithm": "sac",
+  "phase": "swing_up",
+  "description": "Two-link TIP multiplicative reward plus bounded fast-top cost and capture bonus; independent SAC swing-up experiment.",
+  "environment_file": "environment.json",
+  "evaluation_file": "evaluation.json",
+  "observer_file": "observer.json"
+}

@@ -1,0 +1,36 @@
+{
+  "protocol": "full_episode_capture_center_push",
+  "seed": 921001,
+  "duration_s": 20,
+  "capture_hold_s": 10,
+  "center_hold_s": 5,
+  "capture_cart_m": {"rail": 0.12},
+  "precision_cart_m": {"rail": 0.02},
+  "angle_rad": {"angle": 0.569},
+  "velocity": {"rate": 0.1691},
+  "rail_limit_m": {"rail": 0.95},
+  "fall_angle_rad": {"angle": 3.319},
+  "randomization": {
+    "mass_scale": [
+      0.85,
+      1.15
+    ],
+    "damping_scale": [
+      0.75,
+      1.25
+    ],
+    "force_scale": [
+      0.9,
+      1.1
+    ],
+    "observation_noise_std": [
+      0,
+      0.02
+    ]
+  },
+  "push": {
+    "force_n": {"force": 0.25},
+    "duration_s": 0.1,
+    "after_stable_s": 1
+  }
+}

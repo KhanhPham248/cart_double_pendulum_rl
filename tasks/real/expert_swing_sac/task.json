@@ -1,0 +1,9 @@
+{
+  "name": "expert_swing_sac",
+  "algorithm": "sac",
+  "phase": "swing_up",
+  "description": "SAC swing-up expert: from hanging to a calm double-upright state that can be handed to the balancing expert.",
+  "environment_file": "environment.json",
+  "evaluation_file": "evaluation.json",
+  "observer_file": "observer.json"
+}

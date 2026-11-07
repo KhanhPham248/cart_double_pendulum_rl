@@ -1,0 +1,83 @@
+{
+  "protocol": "fixed_ep_centered_validation_v1",
+  "target_ep": 1,
+  "handoff": {
+    "cart_safe_m": {
+      "rail": 0.65
+    },
+    "angle_threshold_rad": {
+      "angle": 1.138
+    },
+    "cart_velocity_threshold_m_s": {
+      "cart_speed": 0.418
+    },
+    "angular_velocity_threshold_rad_s": {
+      "rate": 0.5285
+    }
+  },
+  "rail_limit_m": {
+    "rail": 0.95
+  },
+  "overspeed_rad_s": {
+    "rate": 120
+  },
+  "reset_cart_m": {
+    "rail": 0.15
+  },
+  "reset_angle_rad": {
+    "angle": 0.5
+  },
+  "transition_cart_velocity_m_s": {
+    "cart_speed": 0.25
+  },
+  "transition_angular_velocity_rad_s": {
+    "rate": 8
+  },
+  "randomization": {
+    "mass_scale": [
+      0.85,
+      1.15
+    ],
+    "damping_scale": [
+      0.75,
+      1.25
+    ],
+    "force_scale": [
+      0.9,
+      1.1
+    ],
+    "observation_noise_std": [
+      0,
+      0.005
+    ]
+  },
+  "conditions": [
+    {
+      "key": "ep_nominal",
+      "initial_state": "ep2",
+      "duration_s": 20,
+      "hold_s": 1,
+      "randomized": false,
+      "seed": 611001
+    },
+    {
+      "key": "ep_randomized",
+      "initial_state": "ep2",
+      "duration_s": 20,
+      "hold_s": 1,
+      "randomized": true,
+      "seed": 621001
+    },
+    {
+      "key": "ep_dynamic_randomized",
+      "initial_state": "transition_random",
+      "duration_s": 20,
+      "hold_s": 1,
+      "randomized": true,
+      "seed": 631001
+    }
+  ],
+  "centering": {
+    "cart_tolerance_mm": 5.0
+  }
+}

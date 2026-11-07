@@ -1,0 +1,93 @@
+<mujoco model="cart_double_pendulum_real">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.0025" gravity="0 0 -9.81" integrator="implicitfast"
+          iterations="80" tolerance="1e-8"/>
+  <statistic center="0 -0.06 0.08" extent="0.55"/>
+  <visual>
+    <global offwidth="1280" offheight="720"/>
+    <quality shadowsize="4096"/>
+    <headlight ambient="0.31 0.34 0.38" diffuse="0.42 0.45 0.48" specular="0.08 0.09 0.10"/>
+    <rgba haze="0.69 0.74 0.79 1"/>
+  </visual>
+  <asset>
+    <texture name="sky" type="skybox" builtin="gradient" rgb1="0.65 0.72 0.79" rgb2="0.51 0.60 0.68" width="512" height="512"/>
+    <texture name="floor_grid" type="2d" builtin="checker" rgb1="0.36 0.39 0.42" rgb2="0.355 0.385 0.415" width="512" height="512"/>
+    <material name="floor" texture="floor_grid" texrepeat="8 8" texuniform="true" reflectance="0.02"/>
+    <material name="rail" rgba="0.22 0.27 0.32 1" reflectance="0.23"/>
+    <material name="rail_edge" rgba="0.51 0.57 0.61 1" reflectance="0.29"/>
+    <material name="rail_mark" rgba="0.88 0.62 0.21 1" reflectance="0.08"/>
+    <material name="rail_tick" rgba="0.90 0.92 0.94 1" reflectance="0.05"/>
+    <material name="center_mark" rgba="0.18 0.80 0.34 1" reflectance="0.05"/>
+    <material name="cart_center_mark" rgba="1.0 0.82 0.10 1" reflectance="0.05"/>
+    <material name="cart" rgba="0.07 0.24 0.36 1" reflectance="0.16"/>
+    <material name="bracket" rgba="0.27 0.32 0.36 1" reflectance="0.22"/>
+    <material name="link1" rgba="0.04 0.47 0.54 1" reflectance="0.16"/>
+    <material name="link2" rgba="0.80 0.33 0.12 1" reflectance="0.12"/>
+    <material name="joint" rgba="0.73 0.78 0.80 1" reflectance="0.30"/>
+  </asset>
+  <default>
+    <geom contype="0" conaffinity="0" mass="0"/>
+  </default>
+  <worldbody>
+    <light name="key" pos="0.6 -1.2 1.8" directional="true" diffuse="0.68 0.72 0.75" specular="0.18 0.20 0.22"/>
+    <light name="fill" pos="-1.0 0.8 1.2" directional="true" diffuse="0.25 0.29 0.34" specular="0.06 0.08 0.10"/>
+    <camera name="overview" pos="0.62 -1.05 0.30" xyaxes="0.86 0.51 0 -0.10 0.17 0.98" fovy="36"/>
+    <geom name="rail" type="box" size="0.30 0.015 0.010" pos="0 0 -0.010" material="rail_edge"/>
+    <geom name="rail_base" type="box" size="0.32 0.040 0.006" pos="0 0 -0.026" material="rail"/>
+    <geom name="left_stop" type="box" size="0.010 0.030 0.030" pos="-0.2746 0 0.020" material="bracket"/>
+    <geom name="right_stop" type="box" size="0.010 0.030 0.030" pos="0.2746 0 0.020" material="bracket"/>
+    <geom name="left_limit_mark" type="box" size="0.002 0.016 0.0105" pos="-0.2115 0 -0.010" material="rail_mark"/>
+    <geom name="right_limit_mark" type="box" size="0.002 0.016 0.0105" pos="0.2115 0 -0.010" material="rail_mark"/>
+    <!-- Fixed x=0 reference; visible on either side of the rail base. -->
+    <geom name="rail_center_mark" type="box" size="0.0025 0.040 0.001" pos="0 0 -0.019" material="center_mark"/>
+    <geom name="rail_center_face" type="box" size="0.0025 0.0008 0.0065" pos="0 -0.0408 -0.026" material="center_mark"/>
+    <geom name="rail_center_face_rear" type="box" size="0.0025 0.0008 0.0065" pos="0 0.0408 -0.026" material="center_mark"/>
+    <geom name="rail_tick_m020" type="box" size="0.0008 0.008 0.0008" pos="-0.20 -0.026 -0.0195" material="rail_tick"/>
+    <geom name="rail_tick_m015" type="box" size="0.0008 0.008 0.0008" pos="-0.15 -0.026 -0.0195" material="rail_tick"/>
+    <geom name="rail_tick_m010" type="box" size="0.0008 0.008 0.0008" pos="-0.10 -0.026 -0.0195" material="rail_tick"/>
+    <geom name="rail_tick_m005" type="box" size="0.0008 0.008 0.0008" pos="-0.05 -0.026 -0.0195" material="rail_tick"/>
+    <geom name="rail_tick_p005" type="box" size="0.0008 0.008 0.0008" pos="0.05 -0.026 -0.0195" material="rail_tick"/>
+    <geom name="rail_tick_p010" type="box" size="0.0008 0.008 0.0008" pos="0.10 -0.026 -0.0195" material="rail_tick"/>
+    <geom name="rail_tick_p015" type="box" size="0.0008 0.008 0.0008" pos="0.15 -0.026 -0.0195" material="rail_tick"/>
+    <geom name="rail_tick_p020" type="box" size="0.0008 0.008 0.0008" pos="0.20 -0.026 -0.0195" material="rail_tick"/>
+    <geom name="floor" type="plane" size="1 1 0.05" pos="0 0 -0.32" material="floor"/>
+    <body name="cart" pos="0 0 0.025">
+      <!-- MEASURE -->
+      <joint name="cart_slide" type="slide" axis="1 0 0" range="-0.2115 0.2115"
+             damping="65.6" armature="3.44"/>
+      <!-- MEASURE -->
+      <inertial pos="0 0 0" mass="0.26" diaginertia="2e-4 3e-4 3e-4"/>
+      <geom name="cart_body" type="box" size="0.040 0.035 0.025" material="cart"/>
+      <!-- Moving yellow reference: aligns with the green rail mark at cart_slide=0. -->
+      <geom name="cart_center_pointer" type="box" size="0.002 0.0008 0.022" pos="0 -0.0358 0" material="cart_center_mark"/>
+      <geom name="cart_center_pointer_rear" type="box" size="0.002 0.0008 0.022" pos="0 0.0358 0" material="cart_center_mark"/>
+      <geom name="side_plate" type="box" size="0.025 0.004 0.040" pos="0 -0.039 0.040" material="bracket"/>
+      <geom name="pivot_housing" type="cylinder" size="0.010 0.006" pos="0 -0.049 0.065"
+            euler="1.57079632679 0 0" material="joint"/>
+      <body name="link1" pos="0 -0.058 0.065">
+        <!-- MEASURE -->
+        <joint name="base_joint" type="hinge" axis="0 1 0" damping="2e-5"/>
+        <geom name="link1_geom" type="box" size="0.010 0.0015 0.075" pos="0 0 -0.075"
+              mass="0.0112" material="link1"/>
+        <!-- MEASURE -->
+        <geom name="elbow_hardware" type="cylinder" size="0.008 0.004" pos="0 -0.003 -0.150"
+              euler="1.57079632679 0 0" mass="0.015" material="joint"/>
+        <body name="link2" pos="0 -0.006 -0.150">
+          <!-- MEASURE -->
+          <joint name="elbow_joint" type="hinge" axis="0 1 0" damping="2e-5"/>
+          <geom name="link2_geom" type="box" size="0.010 0.0015 0.075" pos="0 0 -0.075"
+                mass="0.0112" material="link2"/>
+          <site name="tip" pos="0 0 -0.150" size="0.004" material="joint"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="cart_motor" joint="cart_slide" gear="1" ctrlrange="-54.625 54.625"
+           forcerange="-54.625 54.625"/>
+  </actuator>
+  <keyframe>
+    <key name="hanging" qpos="0 0 0" ctrl="0"/>
+    <key name="upright" qpos="0 3.141592653589793 0" ctrl="0"/>
+  </keyframe>
+</mujoco>

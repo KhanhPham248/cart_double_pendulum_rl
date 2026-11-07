@@ -1,0 +1,162 @@
+{
+  "task": "full_sac",
+  "progress_units": "skill_gated_schedule",
+  "interpolation": "step",
+  "hanging_cart_m": {
+    "rail": 0.18
+  },
+  "hanging_angle_rad": 0.18,
+  "hanging_velocity": {
+    "rate": 0.148
+  },
+  "schedule": [
+    {
+      "fraction": 0,
+      "hanging_probability": 0.45,
+      "bank_probability": 0.15,
+      "upright_cart_m": {
+        "rail": 0.12
+      },
+      "upright_angle_rad": {
+        "angle": 0.2845
+      },
+      "upright_velocity": {
+        "rate": 0.04228
+      },
+      "precision_sigma_m": {
+        "rail": 0.12
+      },
+      "settling_scale": 0.25,
+      "precision_scale": 0.25,
+      "center_weight_scale": 0
+    },
+    {
+      "fraction": 0.15,
+      "hanging_probability": 0.5,
+      "bank_probability": 0.15,
+      "upright_cart_m": {
+        "rail": 0.16
+      },
+      "upright_angle_rad": {
+        "angle": 0.3319
+      },
+      "upright_velocity": {
+        "rate": 0.05073
+      },
+      "precision_sigma_m": {
+        "rail": 0.08
+      },
+      "settling_scale": 0.5,
+      "precision_scale": 0.7,
+      "center_weight_scale": 0.25
+    },
+    {
+      "fraction": 0.35,
+      "hanging_probability": 0.6,
+      "bank_probability": 0.15,
+      "upright_cart_m": {
+        "rail": 0.22
+      },
+      "upright_angle_rad": {
+        "angle": 0.3793
+      },
+      "upright_velocity": {
+        "rate": 0.06342
+      },
+      "precision_sigma_m": {
+        "rail": 0.04
+      },
+      "settling_scale": 1,
+      "precision_scale": 1,
+      "center_weight_scale": 0.65
+    },
+    {
+      "fraction": 0.6,
+      "hanging_probability": 0.6,
+      "bank_probability": 0.15,
+      "upright_cart_m": {
+        "rail": 0.3
+      },
+      "upright_angle_rad": {
+        "angle": 0.3793
+      },
+      "upright_velocity": {
+        "rate": 0.06342
+      },
+      "precision_sigma_m": {
+        "rail": 0.025
+      },
+      "settling_scale": 1,
+      "precision_scale": 1,
+      "center_weight_scale": 1
+    },
+    {
+      "fraction": 0.85,
+      "hanging_probability": 0.6,
+      "bank_probability": 0.15,
+      "upright_cart_m": {
+        "rail": 0.35
+      },
+      "upright_angle_rad": {
+        "angle": 0.2845
+      },
+      "upright_velocity": {
+        "rate": 0.04228
+      },
+      "precision_sigma_m": {
+        "rail": 0.025
+      },
+      "settling_scale": 1,
+      "precision_scale": 1,
+      "center_weight_scale": 1
+    },
+    {
+      "fraction": 1,
+      "hanging_probability": 0.6,
+      "bank_probability": 0.15,
+      "upright_cart_m": {
+        "rail": 0.35
+      },
+      "upright_angle_rad": {
+        "angle": 0.2845
+      },
+      "upright_velocity": {
+        "rate": 0.04228
+      },
+      "precision_sigma_m": {
+        "rail": 0.025
+      },
+      "settling_scale": 1,
+      "precision_scale": 1,
+      "center_weight_scale": 1
+    }
+  ],
+  "mirror_resets": true,
+  "skill_gates": [
+    {
+      "capture_min": 0.8,
+      "centre_min": 0.0,
+      "evaluations": 1
+    },
+    {
+      "capture_min": 0.8,
+      "centre_min": 0.0,
+      "evaluations": 1
+    },
+    {
+      "capture_min": 0.8,
+      "centre_min": 0.5,
+      "evaluations": 1
+    },
+    {
+      "capture_min": 0.8,
+      "centre_min": 0.5,
+      "evaluations": 1
+    },
+    {
+      "capture_min": 0.8,
+      "centre_min": 0.8,
+      "evaluations": 1
+    }
+  ]
+}

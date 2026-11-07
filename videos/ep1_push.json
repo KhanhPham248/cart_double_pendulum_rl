@@ -1,0 +1,55 @@
+{
+  "target_ep": 1,
+  "scenario": "push",
+  "file": "ep1_push.mp4",
+  "sha256": "35db50e4414ec43fc9345ba4b6ba24dc296b3d0bb17325d88e6a3bcb6d2a677d",
+  "policy_sha256": "4ba2f5650fc8bb5138bb3bb7edfdb74ad7c211e7274dcb3953dec73f2bb5ab59",
+  "source": {
+    "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep1/latest_run.json",
+    "run_dir": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep1/runs/20261106_183527_997641/train",
+    "task": {
+      "name": "sac_ep1",
+      "algorithm": "sac",
+      "phase": "swing_up",
+      "description": "Fixed EP1 two-link TIP rate5 SAC; target-aware reset and evaluation.",
+      "environment_file": "environment.json",
+      "evaluation_file": "evaluation.json",
+      "target_ep": 1
+    }
+  },
+  "centered_training": true,
+  "seed": 42,
+  "duration_s": 20.0,
+  "fps": 25,
+  "initial_qpos": [
+    0.005479120971119267,
+    3.137925359974916,
+    -3.12007677839511
+  ],
+  "observation_noise_std": 0.0,
+  "force_noise_fraction": 0.0,
+  "noise_correlation_s": null,
+  "push_events": [
+    {
+      "time_s": 8.0,
+      "force_n": 1.0,
+      "duration_s": 0.1,
+      "target": "cart"
+    },
+    {
+      "time_s": 14.0,
+      "force_n": -1.0,
+      "duration_s": 0.1,
+      "target": "cart"
+    }
+  ],
+  "longest_center_hold_s": 18.799999999999688,
+  "center_occupancy": 0.94,
+  "rail_limit_reached": false,
+  "max_cart_excursion_m": 0.10314887092409318,
+  "final_qpos": [
+    0.0012150960369017362,
+    2.2798212646317012e-05,
+    9.424774416462856
+  ]
+}

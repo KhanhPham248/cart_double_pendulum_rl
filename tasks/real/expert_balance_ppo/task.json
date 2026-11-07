@@ -1,0 +1,9 @@
+{
+  "name": "expert_balance_ppo",
+  "algorithm": "ppo",
+  "phase": "balancing",
+  "description": "PPO balancing expert with 20-frame sensor history and a frozen recurrent observer. Trained in two stages: --without-observer, then with frozen_observer.pt.",
+  "environment_file": "environment.json",
+  "evaluation_file": "evaluation.json",
+  "observer_file": "observer.json"
+}

@@ -1,0 +1,47 @@
+{
+  "protocol": "task_local_centered_expert_validation_v1",
+  "conditions": [
+    {
+      "key": "swing_nominal",
+      "task": "swing_up",
+      "initial_state": "hanging",
+      "duration_s": 20,
+      "hold_s": 1,
+      "random_axes": [],
+      "push_force_n": {
+        "force": 0.0
+      },
+      "push_start_s": 2,
+      "push_duration_s": 0.1,
+      "seed": 611001,
+      "sensor_noise_scale": 1,
+      "stability_task": null,
+      "fall_check_after_stable_entry": false
+    },
+    {
+      "key": "swing_randomized",
+      "task": "swing_up",
+      "initial_state": "hanging",
+      "duration_s": 20,
+      "hold_s": 1,
+      "random_axes": [
+        "mass",
+        "damping",
+        "force",
+        "noise"
+      ],
+      "push_force_n": {
+        "force": 0.0
+      },
+      "push_start_s": 2,
+      "push_duration_s": 0.1,
+      "seed": 621001,
+      "sensor_noise_scale": 1,
+      "stability_task": null,
+      "fall_check_after_stable_entry": false
+    }
+  ],
+  "centering": {
+    "cart_tolerance_mm": 5.0
+  }
+}

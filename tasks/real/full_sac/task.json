@@ -1,0 +1,10 @@
+{
+  "name": "full_sac",
+  "algorithm": "sac",
+  "phase": "full",
+  "description": "SAC full task: one policy for swing-up, capture, balancing and cart centring, with a curriculum and mirrored replay.",
+  "environment_file": "environment.json",
+  "evaluation_file": "evaluation.json",
+  "curriculum_file": "curriculum.json",
+  "optimization_file": "optimization.json"
+}

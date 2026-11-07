@@ -1,0 +1,9 @@
+{
+  "name": "sac_ep1",
+  "algorithm": "sac",
+  "phase": "swing_up",
+  "description": "Fixed EP1 two-link TIP rate5 SAC; target-aware reset and evaluation.",
+  "environment_file": "environment.json",
+  "evaluation_file": "evaluation.json",
+  "target_ep": 1
+}

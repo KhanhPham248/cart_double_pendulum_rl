@@ -1,0 +1,6 @@
+{
+  "mirror_replay": false,
+  "selection": "joint_success_then_capture_center_progress",
+  "expert_reward_source": "base_reward.json",
+  "evaluation_thresholds_changed": false
+}

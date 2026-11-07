@@ -1,0 +1,16 @@
+{
+  "device": "cuda:0",
+  "seed": 851101,
+  "observer_model": "model_gru",
+  "balanced_windows": true,
+  "rounds": 3,
+  "updates_per_round": 2000,
+  "collection_episodes": 64,
+  "eval_episodes": 32,
+  "eval_interval": 500,
+  "learning_rate": 0.0003,
+  "window_frames": 32,
+  "burn_in_frames": 0,
+  "full_cross_gain": false,
+  "balancing_robust_case": "balance_randomized_no_push"
+}

@@ -1,0 +1,43 @@
+{
+  "scale_rewards_by_dt": false,
+  "terms": {
+    "tip_transition": {
+      "function": "tip_transition_reward",
+      "weight": 1.0,
+      "params": {
+        "target_ep": 0,
+        "rate_scale": 5.0
+      }
+    },
+    "rail_terminal": {
+      "function": "rail_terminal_cost",
+      "weight": -1.0,
+      "params": {
+        "rail_limit_m": {
+          "rail": 0.95
+        }
+      }
+    },
+    "precision_center": {
+      "function": "tip_center_bonus",
+      "weight": 3.0,
+      "params": {
+        "target_ep": 0,
+        "cart_tolerance_mm": 5.0,
+        "fine_width_mm": 5.0,
+        "broad_cart_m": {
+          "rail": 0.25
+        },
+        "angle_sigma_rad": {
+          "angle": 4.0
+        },
+        "cart_velocity_reference_m_s": {
+          "cart_speed": 0.418
+        },
+        "angular_velocity_reference_rad_s": {
+          "rate": 0.5285
+        }
+      }
+    }
+  }
+}
