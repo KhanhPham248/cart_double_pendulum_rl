@@ -1,17 +1,17 @@
 # EP0–EP3 video gallery
 
 Four fixed-target policies, each shown in nominal, noisy and pushed conditions. The
-animated GIFs below play inline and loop; click any animation to open its full-color MP4.
+animated GIFs below play inline and loop; clicking an animation opens that GIF directly.
 Each GIF preserves 800×600 resolution at 20 fps with a 256-color palette and high-quality
 dithering. The `init_` files identify EP0, which uses the earlier policy; `update_` identifies
-EP1–EP3 centered updates. The paired MP4 files retain 25 fps source quality.
+EP1–EP3 centered updates.
 
 | Target | Nominal | Noise | Push |
 |---|---|---|---|
-| EP0 | [![EP0 nominal](init_ep0_nominal.gif)](ep0_nominal.mp4) | [![EP0 noise](init_ep0_noise.gif)](ep0_noise.mp4) | [![EP0 push](init_ep0_push.gif)](ep0_push.mp4) |
-| EP1 | [![EP1 nominal](update_ep1_nominal.gif)](ep1_nominal.mp4) | [![EP1 noise](update_ep1_noise.gif)](ep1_noise.mp4) | [![EP1 push](update_ep1_push.gif)](ep1_push.mp4) |
-| EP2 | [![EP2 nominal](update_ep2_nominal.gif)](ep2_nominal.mp4) | [![EP2 noise](update_ep2_noise.gif)](ep2_noise.mp4) | [![EP2 push](update_ep2_push.gif)](ep2_push.mp4) |
-| EP3 | [![EP3 nominal](update_ep3_nominal.gif)](ep3_nominal.mp4) | [![EP3 noise](update_ep3_noise.gif)](ep3_noise.mp4) | [![EP3 push](update_ep3_push.gif)](ep3_push.mp4) |
+| EP0 | [![EP0 nominal](init_ep0_nominal.gif)](init_ep0_nominal.gif) | [![EP0 noise](init_ep0_noise.gif)](init_ep0_noise.gif) | [![EP0 push](init_ep0_push.gif)](init_ep0_push.gif) |
+| EP1 | [![EP1 nominal](update_ep1_nominal.gif)](update_ep1_nominal.gif) | [![EP1 noise](update_ep1_noise.gif)](update_ep1_noise.gif) | [![EP1 push](update_ep1_push.gif)](update_ep1_push.gif) |
+| EP2 | [![EP2 nominal](update_ep2_nominal.gif)](update_ep2_nominal.gif) | [![EP2 noise](update_ep2_noise.gif)](update_ep2_noise.gif) | [![EP2 push](update_ep2_push.gif)](update_ep2_push.gif) |
+| EP3 | [![EP3 nominal](update_ep3_nominal.gif)](update_ep3_nominal.gif) | [![EP3 noise](update_ep3_noise.gif)](update_ep3_noise.gif) | [![EP3 push](update_ep3_push.gif)](update_ep3_push.gif) |
 
 ## Protocol
 
@@ -50,8 +50,12 @@ From repository root, install the video extra and FFmpeg/EGL support:
 ```bash
 python -m pip install -e '.[video]'
 MUJOCO_GL=egl python scripts/render_ep_videos.py
+python scripts/create_ep_gifs.py --remove-source-mp4
 ```
+
+The renderer creates temporary MP4s for palette generation. The final command
+updates the manifest and sidecars, verifies the GIF files, then deletes those MP4s.
 
 The [manifest](manifest.json) records model/policy hashes, initial states, parameters,
 push events, GIF settings and per-clip summaries. Matching JSON sidecars and sampled
-traces are provided beside each MP4. Output filenames are overwritten on rerender.
+traces are provided beside each GIF. Output filenames are overwritten on rerender.

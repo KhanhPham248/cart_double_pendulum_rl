@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Create full-resolution, looping GitHub-ready GIFs from the EP MP4 gallery."""
+"""Create full-resolution GitHub GIFs and optionally remove temporary MP4s."""
 from __future__ import annotations
 import hashlib
 import json
+import argparse
 from pathlib import Path
 import shutil
 import subprocess
@@ -16,6 +17,10 @@ def sha256(path: Path) -> str:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--remove-source-mp4', action='store_true',
+        help='remove generated MP4s after GIFs and manifest entries are verified')
+    args = parser.parse_args()
     if shutil.which('ffmpeg') is None:
         raise SystemExit('ffmpeg is required')
     sources = sorted(VIDEO_DIR.glob('ep[0-3]_[a-z]*.mp4'))
@@ -40,6 +45,19 @@ def main() -> None:
         record = json.loads((VIDEO_DIR / clip['file'].replace('.mp4','.json')).read_text())
         for key in ('gif','gif_sha256','gif_width','gif_height','gif_fps','gif_loop','gif_colors'):
             clip[key] = record[key]
+        if args.remove_source_mp4:
+            source = clip.pop('file')
+            source_hash = clip.pop('sha256')
+            clip['render_source_mp4'] = source
+            clip['render_source_mp4_sha256'] = source_hash
+            clip['file'] = record['gif']
+            clip['sha256'] = record['gif_sha256']
+            record['render_source_mp4'] = record.pop('file')
+            record['render_source_mp4_sha256'] = record.pop('sha256')
+            record['file'] = record['gif']
+            record['sha256'] = record['gif_sha256']
+            (VIDEO_DIR / source).unlink()
+            (VIDEO_DIR / source.replace('.mp4','.json')).write_text(json.dumps(record, indent=2)+'\n')
     manifest_path.write_text(json.dumps(manifest, indent=2)+'\n')
 
 

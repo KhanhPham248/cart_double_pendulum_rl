@@ -33,8 +33,8 @@ Original license and attribution are preserved.
 
 ## Inline GIFs — 2026-11-07
 
-- 12 looping GIFs generated from the full-resolution MP4 clips.
+- 12 looping GIFs generated from the full-resolution rendered clips.
 - 800×600, 20 fps, 400 frames per clip, 256-color palette and Sierra dithering.
 - Pillow metadata, frame count, infinite-loop flag, dimensions and manifest SHA-256
   checked for every GIF; each file is under 10 MiB.
-- GitHub gallery embeds each GIF and links the animation to its higher-color MP4.
+- GitHub gallery embeds each GIF and links directly to the same GIF.

@@ -1,8 +1,6 @@
 {
   "target_ep": 0,
   "scenario": "nominal",
-  "file": "ep0_nominal.mp4",
-  "sha256": "4919ef354aef2913f1fb2721c6fb37aed547c00252801d140200336ee92a0f28",
   "policy_sha256": "b9be26f3b2b32679d55f3df374746c7afa214df726af2bc1a0de51c1e4c4fb24",
   "source": {
     "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_ep_queue_20261106/results/real/sac_ep0/latest_run.json",
@@ -57,5 +55,9 @@
   "gif_height": 600,
   "gif_fps": 20,
   "gif_loop": "infinite",
-  "gif_colors": 256
+  "gif_colors": 256,
+  "render_source_mp4": "ep0_nominal.mp4",
+  "render_source_mp4_sha256": "4919ef354aef2913f1fb2721c6fb37aed547c00252801d140200336ee92a0f28",
+  "file": "init_ep0_nominal.gif",
+  "sha256": "de0d2948f2d79cff1f0151d40b2a0f703df6e92651b0c5df860db76f440cb3dd"
 }
