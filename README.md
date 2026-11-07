@@ -89,11 +89,12 @@ are recollected/reset; this is not bit-exact rollout recovery.
 
 ```bash
 MUJOCO_GL=egl python scripts/render_ep_videos.py
+python scripts/create_ep_gifs.py --remove-source-mp4 --remove-jpg-json
 ```
 
-The renderer uses only this repository's model, runtime and four supplied EP policy
-bundles. The script records scenario parameters, hashes, push events and trajectory
-summaries in `videos/manifest.json`. Existing filenames are overwritten on rerender.
+The renderer uses this repository's model, runtime and four supplied EP policy bundles.
+The conversion step removes temporary MP4/JPG/JSON files; the repository keeps the
+GIFs and policy provenance. Existing GIF filenames are overwritten on rerender.
 
 ## Validate
 

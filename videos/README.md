@@ -50,12 +50,9 @@ From repository root, install the video extra and FFmpeg/EGL support:
 ```bash
 python -m pip install -e '.[video]'
 MUJOCO_GL=egl python scripts/render_ep_videos.py
-python scripts/create_ep_gifs.py --remove-source-mp4
+python scripts/create_ep_gifs.py --remove-source-mp4 --remove-jpg-json
 ```
 
-The renderer creates temporary MP4s for palette generation. The final command
-updates the manifest and sidecars, verifies the GIF files, then deletes those MP4s.
-
-The [manifest](manifest.json) records model/policy hashes, initial states, parameters,
-push events, GIF settings and per-clip summaries. Matching JSON sidecars and sampled
-traces are provided beside each GIF. Output filenames are overwritten on rerender.
+The renderer creates temporary MP4s, JPG thumbnails and JSON traces. The final command
+converts and verifies the GIFs, then removes those temporary files and sidecars. Policy
+hashes and source provenance remain in `../policies/ep*/provenance.json`.

@@ -20,7 +20,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--remove-source-mp4', action='store_true',
         help='remove generated MP4s after GIFs and manifest entries are verified')
+    parser.add_argument('--remove-jpg-json', action='store_true',
+        help='remove gallery thumbnails, traces and JSON sidecars after conversion')
     args = parser.parse_args()
+    if args.remove_jpg_json and not args.remove_source_mp4:
+        parser.error('--remove-jpg-json requires --remove-source-mp4')
     if shutil.which('ffmpeg') is None:
         raise SystemExit('ffmpeg is required')
     sources = sorted(VIDEO_DIR.glob('ep[0-3]_[a-z]*.mp4'))
@@ -59,6 +63,10 @@ def main() -> None:
             (VIDEO_DIR / source).unlink()
             (VIDEO_DIR / source.replace('.mp4','.json')).write_text(json.dumps(record, indent=2)+'\n')
     manifest_path.write_text(json.dumps(manifest, indent=2)+'\n')
+    if args.remove_jpg_json:
+        for pattern in ('*.jpg', '*.json'):
+            for path in VIDEO_DIR.glob(pattern):
+                path.unlink()
 
 
 if __name__ == '__main__':
