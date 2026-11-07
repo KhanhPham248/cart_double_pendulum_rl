@@ -5,7 +5,7 @@
       "target_ep": 0,
       "scenario": "nominal",
       "file": "ep0_nominal.mp4",
-      "sha256": "58b2546f9b3647818e2b33be54f69a843c718305d7f312840df1c2763ea5baff",
+      "sha256": "4919ef354aef2913f1fb2721c6fb37aed547c00252801d140200336ee92a0f28",
       "policy_sha256": "b9be26f3b2b32679d55f3df374746c7afa214df726af2bc1a0de51c1e4c4fb24",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_ep_queue_20261106/results/real/sac_ep0/latest_run.json",
@@ -41,13 +41,25 @@
         -0.0022688439924516725,
         6.28318530720751,
         -12.566370614562821
-      ]
+      ],
+      "thumbnail": "init_ep0_nominal.jpg",
+      "thumbnail_time_s": 3.0,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 0,
       "scenario": "noise",
       "file": "ep0_noise.mp4",
-      "sha256": "7825d1dd1f86252841af3d051a88f9c9813d8a17ef36e4526604f3f6511e838e",
+      "sha256": "ea003754ededc63af195d693bdd93ee9d289b25f1c6da863b27c37d51f74114c",
       "policy_sha256": "b9be26f3b2b32679d55f3df374746c7afa214df726af2bc1a0de51c1e4c4fb24",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_ep_queue_20261106/results/real/sac_ep0/latest_run.json",
@@ -83,13 +95,25 @@
         0.0024254261296203635,
         6.28184320811875,
         -12.566119174856246
-      ]
+      ],
+      "thumbnail": "init_ep0_noise.jpg",
+      "thumbnail_time_s": 10.0,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 0,
       "scenario": "push",
       "file": "ep0_push.mp4",
-      "sha256": "a0e5fe278050671fea741c9a359ba9bb7c0f1f8e5c65df8bdb63cfbb040450eb",
+      "sha256": "e3565fa028cae76f5bf33a6b666acb318be8efedff26583528058c6621f12476",
       "policy_sha256": "b9be26f3b2b32679d55f3df374746c7afa214df726af2bc1a0de51c1e4c4fb24",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_ep_queue_20261106/results/real/sac_ep0/latest_run.json",
@@ -138,13 +162,25 @@
         -0.0022655495007734327,
         6.283182759281184,
         -12.566370561450968
-      ]
+      ],
+      "thumbnail": "init_ep0_push.jpg",
+      "thumbnail_time_s": 8.04,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 1,
       "scenario": "nominal",
       "file": "ep1_nominal.mp4",
-      "sha256": "80df3ddf43030a8e5de8115791e5ca769a3f761dcd6cec94328bbcba29c894e3",
+      "sha256": "bef909a43ad6da6b98de5fd6356b321200f57ce84e74913e7fd21604a4182af9",
       "policy_sha256": "4ba2f5650fc8bb5138bb3bb7edfdb74ad7c211e7274dcb3953dec73f2bb5ab59",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep1/latest_run.json",
@@ -180,13 +216,25 @@
         0.0012198972822095662,
         -6.064505433869297e-09,
         9.424777963226852
-      ]
+      ],
+      "thumbnail": "update_ep1_nominal.jpg",
+      "thumbnail_time_s": 3.0,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 1,
       "scenario": "noise",
       "file": "ep1_noise.mp4",
-      "sha256": "3ef6b9fed8417e39a7d14dee5c0e1e1c248a8c24f4f0ff96b5ba164ebb39474f",
+      "sha256": "f2cec1e2df3040e5dacff87ed310278a692fcb524014d989181deb9bb6df65fb",
       "policy_sha256": "4ba2f5650fc8bb5138bb3bb7edfdb74ad7c211e7274dcb3953dec73f2bb5ab59",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep1/latest_run.json",
@@ -222,13 +270,25 @@
         0.0007342757595519327,
         0.021930772058507495,
         9.4121728154326
-      ]
+      ],
+      "thumbnail": "update_ep1_noise.jpg",
+      "thumbnail_time_s": 10.0,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 1,
       "scenario": "push",
       "file": "ep1_push.mp4",
-      "sha256": "35db50e4414ec43fc9345ba4b6ba24dc296b3d0bb17325d88e6a3bcb6d2a677d",
+      "sha256": "f634c46433d6d09c245e7416a0515fcf39668ca620e1c10c53ecf7cc0f4e936c",
       "policy_sha256": "4ba2f5650fc8bb5138bb3bb7edfdb74ad7c211e7274dcb3953dec73f2bb5ab59",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep1/latest_run.json",
@@ -277,13 +337,25 @@
         0.0012150960369017362,
         2.2798212646317012e-05,
         9.424774416462856
-      ]
+      ],
+      "thumbnail": "update_ep1_push.jpg",
+      "thumbnail_time_s": 8.04,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 2,
       "scenario": "nominal",
       "file": "ep2_nominal.mp4",
-      "sha256": "fa1000b42a38cde34d512a79c4eff4d97339646873b26feaea5940950115aebf",
+      "sha256": "768cdfed90278abc39a61f55bdfc104f617b1de3d65a6823524f51d6a56bcc31",
       "policy_sha256": "705394149f62f7900365443bfa14ae6b7c7afbd6db0ad350f69b57e087da5658",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep2/latest_run.json",
@@ -319,13 +391,25 @@
         -0.002121675718984979,
         -3.1415926538307555,
         15.707963268392112
-      ]
+      ],
+      "thumbnail": "update_ep2_nominal.jpg",
+      "thumbnail_time_s": 3.0,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 2,
       "scenario": "noise",
       "file": "ep2_noise.mp4",
-      "sha256": "97e7cef66ca421b85c177ceff6ff87a9b14f699c0dce7c3702fd6332f194a0d4",
+      "sha256": "2b17ec0e0b6e8d21bdf06df24c0b108aed8830e5268fafce1a75ddaee8721e77",
       "policy_sha256": "705394149f62f7900365443bfa14ae6b7c7afbd6db0ad350f69b57e087da5658",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep2/latest_run.json",
@@ -361,13 +445,25 @@
         -0.0006587577070098294,
         -3.1448243902318724,
         15.715649491308897
-      ]
+      ],
+      "thumbnail": "update_ep2_noise.jpg",
+      "thumbnail_time_s": 10.0,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 2,
       "scenario": "push",
       "file": "ep2_push.mp4",
-      "sha256": "9f812d2d634913def1734139109e3314eb62f0b017d7022a000ba708552ffac1",
+      "sha256": "f8f74f86658574a573a91d4e0758af8766c652126fd707de572d1ed75c3f2c71",
       "policy_sha256": "705394149f62f7900365443bfa14ae6b7c7afbd6db0ad350f69b57e087da5658",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep2/latest_run.json",
@@ -416,13 +512,25 @@
         -0.0021216756602134104,
         -3.1415926548143984,
         15.707963268441043
-      ]
+      ],
+      "thumbnail": "update_ep2_push.jpg",
+      "thumbnail_time_s": 8.04,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 3,
       "scenario": "nominal",
       "file": "ep3_nominal.mp4",
-      "sha256": "0e0f1c9cc88184d00c425b5ee0619b2c6db86de68cbab3843f2d89337d6f6eca",
+      "sha256": "3fc041ed155231be62c139f7752630d4a6e30639e0e845b53e36ae4e7dad182e",
       "policy_sha256": "f9f10a7f6610677cb5e047c7214ab20dc95f5a20bda7162b6d4fd0c831a21bc0",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep3/latest_run.json",
@@ -458,13 +566,25 @@
         0.0004957898883446026,
         -3.1415926598624133,
         6.283185312805183
-      ]
+      ],
+      "thumbnail": "update_ep3_nominal.jpg",
+      "thumbnail_time_s": 3.0,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 3,
       "scenario": "noise",
       "file": "ep3_noise.mp4",
-      "sha256": "170f4629f3b0fedd4805f753f8e944a20f86ab4ff38438af629e4311ce152c8a",
+      "sha256": "9e8ac13686f8fda93a18cdc7e75e5630bc524309a589902ad95fd593a864c4e4",
       "policy_sha256": "f9f10a7f6610677cb5e047c7214ab20dc95f5a20bda7162b6d4fd0c831a21bc0",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep3/latest_run.json",
@@ -500,13 +620,25 @@
         -0.0008879524777653512,
         -3.136806148829915,
         6.278720688158515
-      ]
+      ],
+      "thumbnail": "update_ep3_noise.jpg",
+      "thumbnail_time_s": 10.0,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     },
     {
       "target_ep": 3,
       "scenario": "push",
       "file": "ep3_push.mp4",
-      "sha256": "cc02212b0d77c2707e595a15e38307b8447f5fceedaad9038539b66cce8ba80d",
+      "sha256": "c4f6e1391510e1a2050a412c795d0a991cc5320a77f9f2c242a2cfcf3e3f0019",
       "policy_sha256": "f9f10a7f6610677cb5e047c7214ab20dc95f5a20bda7162b6d4fd0c831a21bc0",
       "source": {
         "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep3/latest_run.json",
@@ -555,7 +687,19 @@
         0.0004957907891584955,
         -3.141592662042175,
         6.2831853136683735
-      ]
+      ],
+      "thumbnail": "update_ep3_push.jpg",
+      "thumbnail_time_s": 8.04,
+      "camera": {
+        "azimuth": 90.0,
+        "elevation": -8.0,
+        "distance": 1.65,
+        "lookat_m": [
+          0.0,
+          -0.04,
+          0.1
+        ]
+      }
     }
   ],
   "note": "Single fixed-seed demonstrations, not an evaluation benchmark."

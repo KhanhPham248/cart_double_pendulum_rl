@@ -56,7 +56,10 @@ def render(ep, scenario, args):
     every = round(1 / (args.fps * dt))
     if every < 1 or not math.isclose(every * dt, 1 / args.fps):
         raise ValueError('fps must divide the control frequency exactly')
+    prefix = 'init' if ep == 0 else 'update'
+    thumbnail_time = {'nominal': 3.0, 'noise': 10.0, 'push': 8.04}[scenario]
     output = args.output / f'ep{ep}_{scenario}.mp4'
+    thumbnail = args.output / f'{prefix}_ep{ep}_{scenario}.jpg'
     encoder = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo',
         '-pixel_format', 'rgb24', '-video_size', f'{args.width}x{args.height}',
         '-framerate', str(args.fps), '-i', '-', '-an', '-c:v', 'libx264',
@@ -65,8 +68,8 @@ def render(ep, scenario, args):
     renderer = mujoco.Renderer(runtime.model, height=args.height, width=args.width)
     camera = mujoco.MjvCamera()
     camera.type = mujoco.mjtCamera.mjCAMERA_FREE
-    camera.azimuth = 90.; camera.elevation = -8.; camera.distance = 1.15
-    camera.lookat[:] = [0., -.04, .02]
+    camera.azimuth = 90.; camera.elevation = -8.; camera.distance = 1.65
+    camera.lookat[:] = [0., -.04, .10]
     font = ImageFont.truetype('DejaVuSans.ttf', 18)
     small = ImageFont.truetype('DejaVuSans.ttf', 14)
     cart = mujoco.mj_name2id(runtime.model, mujoco.mjtObj.mjOBJ_BODY, 'cart')
@@ -104,6 +107,7 @@ def render(ep, scenario, args):
             max_cart = max(max_cart, abs(runtime.qpos[0]))
             rail = rail or abs(runtime.qpos[0]) >= .95 * scales.rail
             if step % every == every - 1:
+                frame_time = t + dt
                 renderer.update_scene(runtime.data, camera=camera)
                 frame = Image.fromarray(renderer.render())
                 draw = ImageDraw.Draw(frame)
@@ -122,6 +126,8 @@ def render(ep, scenario, args):
                 status = 'RAIL LIMIT REACHED' if rail else 'PUSH ACTIVE' if push else 'CENTERED + STILL' if centered else 'TRANSITION / RECOVERY'
                 draw.text((16, args.height-30), f'{status}   |   longest +/-5 mm hold: {longest:.2f}s',
                     font=small, fill='#fb7185' if push or rail else '#7dd3fc')
+                if abs(frame_time - thumbnail_time) <= .5 / args.fps:
+                    frame.save(thumbnail, quality=92)
                 encoder.stdin.write(np.asarray(frame).tobytes())
                 trace.append(dict(time_s=float(runtime.data.time), cart_m=float(runtime.qpos[0]),
                                   max_angle_error_deg=float(np.max(np.abs(errors))), push_n=push))
@@ -132,7 +138,8 @@ def render(ep, scenario, args):
     if code:
         raise RuntimeError(f'ffmpeg exited {code}')
     result = dict(target_ep=ep, scenario=scenario, file=output.name, sha256=digest(output),
-        policy_sha256=digest(policy_path), source=source['source'], centered_training=source['centered_training'],
+        policy_sha256=digest(policy_path), thumbnail=thumbnail.name, thumbnail_time_s=thumbnail_time,
+        camera=dict(azimuth=90., elevation=-8., distance=1.65, lookat_m=[0., -.04, .10]), source=source['source'], centered_training=source['centered_training'],
         seed=seed, duration_s=args.seconds, fps=args.fps, initial_qpos=q.tolist(),
         observation_noise_std=args.noise_std if noisy else 0.,
         force_noise_fraction=args.force_fraction if noisy else 0., noise_correlation_s=.25 if noisy else None,

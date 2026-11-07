@@ -2,15 +2,16 @@
 
 Four fixed-target policies, each shown in three scenarios. Click a thumbnail to
 open its MP4 file; use **Raw / Download** if your GitHub client does not play it inline.
-All clips are 20 seconds at 25 fps, 800×600, H.264. Thumbnails use the same 8.04 s
-timestamp, not a selected best moment.
+All clips are 20 seconds at 25 fps, 800×600, H.264. The `init_` thumbnails identify EP0,
+which uses the earlier policy; `update_` identifies EP1–EP3 centered updates. Thumbnail
+times vary by scenario and are selected to show a representative, uncropped view.
 
 | Target | Nominal | Noise | Push |
 |---|---|---|---|
-| EP0 | [![EP0 nominal](ep0_nominal.jpg)](ep0_nominal.mp4) | [![EP0 noise](ep0_noise.jpg)](ep0_noise.mp4) | [![EP0 push](ep0_push.jpg)](ep0_push.mp4) |
-| EP1 | [![EP1 nominal](ep1_nominal.jpg)](ep1_nominal.mp4) | [![EP1 noise](ep1_noise.jpg)](ep1_noise.mp4) | [![EP1 push](ep1_push.jpg)](ep1_push.mp4) |
-| EP2 | [![EP2 nominal](ep2_nominal.jpg)](ep2_nominal.mp4) | [![EP2 noise](ep2_noise.jpg)](ep2_noise.mp4) | [![EP2 push](ep2_push.jpg)](ep2_push.mp4) |
-| EP3 | [![EP3 nominal](ep3_nominal.jpg)](ep3_nominal.mp4) | [![EP3 noise](ep3_noise.jpg)](ep3_noise.mp4) | [![EP3 push](ep3_push.jpg)](ep3_push.mp4) |
+| EP0 | [![EP0 nominal](init_ep0_nominal.jpg)](ep0_nominal.mp4) | [![EP0 noise](init_ep0_noise.jpg)](ep0_noise.mp4) | [![EP0 push](init_ep0_push.jpg)](ep0_push.mp4) |
+| EP1 | [![EP1 nominal](update_ep1_nominal.jpg)](ep1_nominal.mp4) | [![EP1 noise](update_ep1_noise.jpg)](ep1_noise.mp4) | [![EP1 push](update_ep1_push.jpg)](ep1_push.mp4) |
+| EP2 | [![EP2 nominal](update_ep2_nominal.jpg)](ep2_nominal.mp4) | [![EP2 noise](update_ep2_noise.jpg)](ep2_noise.mp4) | [![EP2 push](update_ep2_push.jpg)](ep2_push.mp4) |
+| EP3 | [![EP3 nominal](update_ep3_nominal.jpg)](ep3_nominal.mp4) | [![EP3 noise](update_ep3_noise.jpg)](ep3_noise.mp4) | [![EP3 push](update_ep3_push.jpg)](ep3_push.mp4) |
 
 ## Protocol
 

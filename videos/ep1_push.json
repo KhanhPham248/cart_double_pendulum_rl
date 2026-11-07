@@ -2,7 +2,7 @@
   "target_ep": 1,
   "scenario": "push",
   "file": "ep1_push.mp4",
-  "sha256": "35db50e4414ec43fc9345ba4b6ba24dc296b3d0bb17325d88e6a3bcb6d2a677d",
+  "sha256": "f634c46433d6d09c245e7416a0515fcf39668ca620e1c10c53ecf7cc0f4e936c",
   "policy_sha256": "4ba2f5650fc8bb5138bb3bb7edfdb74ad7c211e7274dcb3953dec73f2bb5ab59",
   "source": {
     "pointer": "/home/ubuntu22/train_mujoco/pendulum/cart_double_center5mm_resume10M_20261106/results/real/sac_ep1/latest_run.json",
@@ -51,5 +51,17 @@
     0.0012150960369017362,
     2.2798212646317012e-05,
     9.424774416462856
-  ]
+  ],
+  "thumbnail": "update_ep1_push.jpg",
+  "thumbnail_time_s": 8.04,
+  "camera": {
+    "azimuth": 90.0,
+    "elevation": -8.0,
+    "distance": 1.65,
+    "lookat_m": [
+      0.0,
+      -0.04,
+      0.1
+    ]
+  }
 }
