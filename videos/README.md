@@ -22,8 +22,8 @@ EP1–EP3 centered updates.
   The sensor scalar multiplies the runtime's channel-specific noise profile; it
   is not 0.010 m or 0.010 rad in every channel. This matches GUI medium noise
   after its amplitude was doubled.
-- **Push/recovery:** nominal sensors/plant. At 8.0 s, apply +1 N along world X
-  directly at the geometric center of link 2 for 0.10 s. The force creates a
+- **Push/recovery:** nominal sensors/plant. At 8.0 s, apply a light 0.25 N force
+  along world +X directly at the geometric center of link 2 for 0.10 s. The force creates a
   joint torque and knocks the bars away from their target. The GIF continues for
   12 s to show recovery. Recovery means the policy returns to target angle/speed
   and cart ±5 mm, then holds that state continuously for 1 s. The overlay reports
@@ -32,6 +32,10 @@ EP1–EP3 centered updates.
   perturbations within ±0.03 rad, zero initial velocities. Seed 42 is paired
   across the three scenarios for each target. EP0 therefore starts near upright
   instead of being initialized at its already-satisfied down/down target.
+- **Push marker:** a pulsing red ring marks the link-2 contact point for 0.75 s.
+  The header states target link, force direction, magnitude, start time and
+  duration; the lower status line shows when the force is active and when the
+  policy is recovering or has regained a stable hold.
 - **Indicator:** “CENTERED + STILL” combines task target-angle/speed thresholds
   with cart ±5 mm. “Longest hold” is a demonstration statistic, not the official
   task benchmark. Any detected rail-limit event remains visibly flagged.
@@ -40,10 +44,10 @@ EP1–EP3 centered updates.
 
 | Target | Peak angle error after hit | Return and hold for 1 s | Rail limit |
 |---|---:|---:|---|
-| EP0 | 176.3° | 5.22 s | No |
-| EP1 | 179.8° | 3.58 s | No |
-| EP2 | 178.7° | 2.78 s | No |
-| EP3 | 179.5° | 3.42 s | No |
+| EP0 | 85.5° | 1.80 s | No |
+| EP1 | 173.8° | 2.50 s | No |
+| EP2 | 177.7° | 2.42 s | No |
+| EP3 | 178.2° | 2.94 s | No |
 
 These are single fixed-seed simulation demonstrations, not statistical guarantees.
 

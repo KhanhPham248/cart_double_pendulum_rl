@@ -17,10 +17,10 @@ measured plant and their own reward/evaluation contracts.
 - Every clip verified with FFprobe: H.264, 800×600, 25 fps, 20 s, 500 frames.
 - Four frozen ONNX hashes checked before inference.
 - Finite state checked every simulation step; no rail-limit event in these clips.
-- Each push hits link 2 with +1 N at its geometric center for 0.10 s; the script records the peak angle error and time to recover and hold for 1 s.
+- Each push applies +0.25 N along world +X at the link-2 geometric center for 0.10 s at t=8.00 s. The GIF marks the contact point in red, and states force direction, magnitude, timing and duration. The script records the peak angle error and time to recover and hold for 1 s.
 - Source policy hashes, reset states, protocol and traces are included with the clips.
 
-The link-2 hit exceeds 176° target-angle error for each EP, and all four policies return and hold within 5 mm in 2.78–5.22 s in the fixed-seed clips. These are demonstrations, not a statistical evaluation or
+The light push causes at least 45° target-angle error for each EP; peak error is 85.5–178.2°. All four policies return and hold within 5 mm in 1.80–2.94 s in these fixed-seed clips. These are demonstrations, not a statistical evaluation or
 physical hardware qualification. EP0 predates the centered continuation used for
 EP1–EP3; this difference is documented in the gallery and policy provenance.
 

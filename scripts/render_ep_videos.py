@@ -30,6 +30,22 @@ def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def project_point(point, camera, width, height, fovy_deg):
+    """Project a world point into the viewer image for a temporary hit marker."""
+    forward = np.asarray(camera.forward, dtype=float)
+    up = np.asarray(camera.up, dtype=float)
+    right = np.cross(forward, up)
+    right /= np.linalg.norm(right)
+    delta = np.asarray(point) - np.asarray(camera.pos)
+    depth = float(np.dot(delta, forward))
+    if depth <= 0:
+        return None
+    tangent = math.tan(math.radians(fovy_deg) / 2)
+    ndc_x = float(np.dot(delta, right)) / (depth * tangent * width / height)
+    ndc_y = float(np.dot(delta, up)) / (depth * tangent)
+    return (int(width * (0.5 + ndc_x / 2)), int(height * (0.5 - ndc_y / 2)))
+
+
 def render(ep, scenario, args):
     seed = args.seed
     noisy = scenario == 'noise'
@@ -124,11 +140,18 @@ def render(ep, scenario, args):
                 renderer.update_scene(runtime.data, camera=camera)
                 frame = Image.fromarray(renderer.render())
                 draw = ImageDraw.Draw(frame)
+                if scenario == 'push' and push_start <= frame_time <= push_end + args.push_indicator_s:
+                    marker = project_point(runtime.data.geom_xpos[link2_geom], renderer.scene.camera[0],
+                                           args.width, args.height, runtime.model.vis.global_.fovy)
+                    if marker is not None:
+                        x, y = marker
+                        draw.ellipse((x-18, y-18, x+18, y+18), outline='#ff304f', width=5)
+                        draw.ellipse((x-5, y-5, x+5, y+5), fill='#ff304f')
                 draw.rectangle((0, 0, args.width, 78), fill='#101827')
                 label = ['DOWN / DOWN', 'DOWN / UP', 'UP / DOWN', 'UP / UP'][ep]
                 draw.text((16, 8), f'EP{ep}  {label}  |  {scenario.upper()}', font=font, fill='#f8fafc')
                 detail = (f'Sensor std {args.noise_std:g} + cart force noise {args.force_fraction*100:g}%' if noisy else
-                          f'Push link 2: +{args.push_force:g} N for {args.push_duration:g} s at {push_start:g} s' if scenario == 'push' else
+                          f'PUSH LINK 2 (+X): {args.push_force:g} N at {push_start:.2f} s for {args.push_duration:.2f} s' if scenario == 'push' else
                           'Nominal plant | noise OFF | no external push')
                 draw.text((16, 40), detail, font=small, fill='#b9c8df')
                 draw.rectangle((0, args.height-65, args.width, args.height), fill='#101827')
@@ -189,8 +212,9 @@ def main():
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--noise-std', type=float, default=.01)
     parser.add_argument('--force-fraction', type=float, default=.01)
-    parser.add_argument('--push-force', type=float, default=1.)
+    parser.add_argument('--push-force', type=float, default=.25)
     parser.add_argument('--push-duration', type=float, default=.1)
+    parser.add_argument('--push-indicator-s', type=float, default=.75)
     parser.add_argument('--fall-angle-deg', type=float, default=45.)
     parser.add_argument('--recovery-hold-s', type=float, default=1.)
     args = parser.parse_args()
