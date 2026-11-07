@@ -32,7 +32,7 @@ EP1–EP3 centered updates.
   perturbations within ±0.03 rad, zero initial velocities. Seed 42 is paired
   across the three scenarios for each target. EP0 therefore starts near upright
   instead of being initialized at its already-satisfied down/down target.
-- **Push marker:** a pulsing red ring marks the link-2 contact point for 0.75 s.
+- **Push marker:** a red ring highlights the link-2 contact point for 0.75 s.
   The header states target link, force direction, magnitude, start time and
   duration; the lower status line shows when the force is active and when the
   policy is recovering or has regained a stable hold.
@@ -72,5 +72,5 @@ python scripts/create_ep_gifs.py --remove-source-mp4 --remove-jpg-json
 ```
 
 The renderer creates temporary MP4s, JPG thumbnails and JSON traces. The final command
-converts and verifies the GIFs, then removes those temporary files and sidecars. Policy
-hashes and source provenance remain in `../policies/ep*/provenance.json`.
+converts the MP4s to 800×600, 20 fps looping GIFs, then removes the temporary files and
+sidecars. Policy hashes and source provenance remain in `../policies/ep*/provenance.json`.
