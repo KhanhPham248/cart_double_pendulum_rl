@@ -17,10 +17,10 @@ measured plant and their own reward/evaluation contracts.
 - Every clip verified with FFprobe: H.264, 800×600, 25 fps, 20 s, 500 frames.
 - Four frozen ONNX hashes checked before inference.
 - Finite state checked every simulation step; no rail-limit event in these clips.
-- Every push clip records both scheduled 0.1 s signed impulses.
+- Each push hits link 2 with +1 N at its geometric center for 0.10 s; the script records the peak angle error and time to recover and hold for 1 s.
 - Source policy hashes, reset states, protocol and traces are included with the clips.
 
-These are fixed-seed demonstrations. They are not a statistical evaluation or
+The link-2 hit exceeds 176° target-angle error for each EP, and all four policies return and hold within 5 mm in 2.78–5.22 s in the fixed-seed clips. These are demonstrations, not a statistical evaluation or
 physical hardware qualification. EP0 predates the centered continuation used for
 EP1–EP3; this difference is documented in the gallery and policy provenance.
 

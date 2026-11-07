@@ -28,8 +28,8 @@ def main() -> None:
     if shutil.which('ffmpeg') is None:
         raise SystemExit('ffmpeg is required')
     sources = sorted(VIDEO_DIR.glob('ep[0-3]_[a-z]*.mp4'))
-    if len(sources) != 12:
-        raise SystemExit(f'expected 12 EP videos; found {len(sources)}')
+    if not sources:
+        raise SystemExit('no temporary EP MP4 files found to convert')
     for source in sources:
         record = json.loads(source.with_suffix('.json').read_text())
         prefix = 'init' if record['target_ep'] == 0 else 'update'

@@ -25,7 +25,7 @@ an earlier best policy and was not retrained for that criterion.
 ## Videos
 
 See the [video gallery](videos/README.md) for EP0–EP3 under nominal conditions,
-sensor/force noise and signed cart pushes. Each video is a deterministic single-rollout
+sensor/force noise and a direct hit to link 2 followed by recovery. Each video is a deterministic single-rollout
 demonstration with its protocol and policy hashes recorded; it is not a success-rate benchmark.
 
 ## Install
@@ -115,7 +115,7 @@ scripts/      Launchers, training pipeline, queue and video renderer
 tasks/real/   Nine independent task configurations
 tests/        Automated verification
 policies/     Four frozen EP ONNX bundles and provenance
-videos/       Scenario gallery, MP4 clips and reproducibility manifest
+videos/       Scenario gallery of inline GIF clips
 docs/         Task configuration and training guide
 ```
 

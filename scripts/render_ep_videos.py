@@ -73,28 +73,35 @@ def render(ep, scenario, args):
     font = ImageFont.truetype('DejaVuSans.ttf', 18)
     small = ImageFont.truetype('DejaVuSans.ttf', 14)
     cart = mujoco.mj_name2id(runtime.model, mujoco.mjtObj.mjOBJ_BODY, 'cart')
+    link2 = mujoco.mj_name2id(runtime.model, mujoco.mjtObj.mjOBJ_BODY, 'link2')
+    link2_geom = mujoco.mj_name2id(runtime.model, mujoco.mjtObj.mjOBJ_GEOM, 'link2_geom')
     noise_rng = np.random.default_rng(np.random.SeedSequence([seed, 17001]))
     force_noise = 0.; hold = longest = 0.; rail = False
+    fell = False; peak_error_deg = 0.; recovery_time_s = None
+    push_start = 8.; push_end = push_start + args.push_duration
     center_steps = 0; max_cart = 0.; events = []; trace = []
     total_steps = round(args.seconds / dt)
     try:
         for step in range(total_steps):
             t = step * dt
-            push = 0.
-            if scenario == 'push':
-                for when, sign in [(8., 1), (14., -1)]:
-                    if round(when / dt) <= step < round((when + args.push_duration) / dt):
-                        push = sign * args.push_force
-                    if step == round(when / dt):
-                        events.append(dict(time_s=t, force_n=sign * args.push_force,
-                                           duration_s=args.push_duration, target='cart'))
+            push_active = scenario == 'push' and push_start <= t < push_end
+            if scenario == 'push' and step == round(push_start / dt):
+                events.append(dict(time_s=t, force_n=args.push_force,
+                                   duration_s=args.push_duration, target='link2',
+                                   point='link2_geom center', direction='world +X'))
             runtime.data.xfrc_applied[:] = 0.
             if noisy:
                 decay = math.exp(-dt / .25)
                 std = args.force_fraction * CONTRACT.actuator_force_limit_n
                 force_noise = float(np.clip(decay * force_noise + std * math.sqrt(1-decay**2)
                     * noise_rng.normal(), -3*std, 3*std))
-            runtime.data.xfrc_applied[cart, 0] = push + force_noise
+            runtime.data.xfrc_applied[cart, 0] = force_noise
+            if push_active:
+                point = runtime.data.geom_xpos[link2_geom].copy()
+                force = np.array([args.push_force, 0., 0.])
+                runtime.data.xfrc_applied[link2, :3] = force
+                runtime.data.xfrc_applied[link2, 3:] = np.cross(
+                    point - runtime.data.xipos[link2], force)
             action = float(policy(observation[None, :])[0, 0])
             policy.record_applied_actions([[action]])
             observation = runtime.step(action)
@@ -103,6 +110,12 @@ def render(ep, scenario, args):
             inside = bool(target_mask(runtime.qpos, runtime.qvel, np, ep, **thresholds))
             centered = inside and abs(runtime.qpos[0]) <= .005
             hold = hold + dt if centered else 0.; longest = max(longest, hold)
+            angle_error_deg = float(np.max(np.abs(np.degrees(target_errors(runtime.qpos, np, ep)))))
+            if scenario == 'push' and t >= push_start:
+                peak_error_deg = max(peak_error_deg, angle_error_deg)
+                fell = fell or angle_error_deg >= args.fall_angle_deg
+                if recovery_time_s is None and t >= push_end and hold >= args.recovery_hold_s:
+                    recovery_time_s = max(0., t + dt - push_end)
             center_steps += int(centered)
             max_cart = max(max_cart, abs(runtime.qpos[0]))
             rail = rail or abs(runtime.qpos[0]) >= .95 * scales.rail
@@ -115,7 +128,7 @@ def render(ep, scenario, args):
                 label = ['DOWN / DOWN', 'DOWN / UP', 'UP / DOWN', 'UP / UP'][ep]
                 draw.text((16, 8), f'EP{ep}  {label}  |  {scenario.upper()}', font=font, fill='#f8fafc')
                 detail = (f'Sensor std {args.noise_std:g} + cart force noise {args.force_fraction*100:g}%' if noisy else
-                          f'Cart push +/-{args.push_force:g} N for {args.push_duration:g} s at 8 / 14 s' if scenario == 'push' else
+                          f'Push link 2: +{args.push_force:g} N for {args.push_duration:g} s at {push_start:g} s' if scenario == 'push' else
                           'Nominal plant | noise OFF | no external push')
                 draw.text((16, 40), detail, font=small, fill='#b9c8df')
                 draw.rectangle((0, args.height-65, args.width, args.height), fill='#101827')
@@ -123,14 +136,24 @@ def render(ep, scenario, args):
                 draw.text((16, args.height-55),
                     f't={runtime.data.time:5.2f}s   cart={runtime.qpos[0]*1000:+7.2f} mm   error={np.max(np.abs(errors)):.1f} deg',
                     font=small, fill='#f8fafc')
-                status = 'RAIL LIMIT REACHED' if rail else 'PUSH ACTIVE' if push else 'CENTERED + STILL' if centered else 'TRANSITION / RECOVERY'
-                draw.text((16, args.height-30), f'{status}   |   longest +/-5 mm hold: {longest:.2f}s',
-                    font=small, fill='#fb7185' if push or rail else '#7dd3fc')
+                if rail:
+                    status = 'RAIL LIMIT REACHED'
+                elif push_active:
+                    status = 'PUSH ON LINK 2'
+                elif scenario == 'push' and recovery_time_s is not None:
+                    status = f'RECOVERED + STABLE in {recovery_time_s:.2f}s'
+                elif scenario == 'push' and fell:
+                    status = 'FALLEN / RECOVERING'
+                else:
+                    status = 'CENTERED + STILL' if centered else 'TRANSITION / RECOVERY'
+                draw.text((16, args.height-30), f'{status}   |   target dev {angle_error_deg:.1f} deg   |   +/-5 mm hold {longest:.2f}s',
+                    font=small, fill='#fb7185' if push_active or rail or (scenario == 'push' and fell and recovery_time_s is None) else '#7dd3fc')
                 if abs(frame_time - thumbnail_time) <= .5 / args.fps:
                     frame.save(thumbnail, quality=92)
                 encoder.stdin.write(np.asarray(frame).tobytes())
                 trace.append(dict(time_s=float(runtime.data.time), cart_m=float(runtime.qpos[0]),
-                                  max_angle_error_deg=float(np.max(np.abs(errors))), push_n=push))
+                                  max_angle_error_deg=float(np.max(np.abs(errors))),
+                                  push_link2_n=args.push_force if push_active else 0.))
     finally:
         renderer.close()
         encoder.stdin.close()
@@ -143,7 +166,10 @@ def render(ep, scenario, args):
         seed=seed, duration_s=args.seconds, fps=args.fps, initial_qpos=q.tolist(),
         observation_noise_std=args.noise_std if noisy else 0.,
         force_noise_fraction=args.force_fraction if noisy else 0., noise_correlation_s=.25 if noisy else None,
-        push_events=events, longest_center_hold_s=longest, center_occupancy=center_steps/total_steps,
+        push_events=events, push_caused_fall=fell, peak_target_angle_error_deg=peak_error_deg,
+        recovery_hold_s=args.recovery_hold_s if scenario == 'push' else None,
+        recovery_time_after_push_s=recovery_time_s, recovery_success=recovery_time_s is not None if scenario == 'push' else None,
+        longest_center_hold_s=longest, center_occupancy=center_steps/total_steps,
         rail_limit_reached=bool(rail), max_cart_excursion_m=float(max_cart), final_qpos=runtime.qpos.tolist())
     output.with_suffix('.json').write_text(json.dumps(result, indent=2)+'\n')
     output.with_suffix('.trace.json').write_text(json.dumps(trace)+'\n')
@@ -165,6 +191,8 @@ def main():
     parser.add_argument('--force-fraction', type=float, default=.01)
     parser.add_argument('--push-force', type=float, default=1.)
     parser.add_argument('--push-duration', type=float, default=.1)
+    parser.add_argument('--fall-angle-deg', type=float, default=45.)
+    parser.add_argument('--recovery-hold-s', type=float, default=1.)
     args = parser.parse_args()
     if shutil.which('ffmpeg') is None:
         parser.error('ffmpeg is required')
